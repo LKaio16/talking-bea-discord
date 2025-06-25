@@ -5,10 +5,12 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 import asyncio
+import motor.motor_asyncio # Importa o motor
 
 # --- Carregar variáveis de ambiente ---
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+MONGO_URI = os.getenv('MONGO_URI') # Pega a string de conexão do .env
 
 # --- Configuração Inicial do Bot ---
 intents = discord.Intents.default()
@@ -19,6 +21,13 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 # --- Função Principal para Rodar o Bot ---
 async def main():
+    # Conecta ao MongoDB Atlas
+    print("Conectando ao MongoDB...")
+    bot.mongo_client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
+    bot.db = bot.mongo_client["BeaBotDB"] # Nome do seu banco de dados
+    bot.inventories = bot.db["inventories"] # Nome da sua "tabela" (coleção) de inventários
+    print("Conectado ao MongoDB com sucesso!")
+
     # Carrega todos os cogs da pasta /cogs
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
