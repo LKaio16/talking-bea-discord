@@ -69,7 +69,7 @@ class UtilityCog(commands.Cog):
         embed.set_footer(text="Bot da Bea - Criado com muito carinho!")
 
         # Envia a mensagem de ajuda de forma que só quem pediu veja
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed)
 
 
     @app_commands.command(name="bea", description="bea.")

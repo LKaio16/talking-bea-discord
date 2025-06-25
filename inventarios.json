@@ -3,22 +3,22 @@
         {
             "titulo": "Pastel Queimado",
             "raridade": "COMUM",
-            "quantidade": 23
+            "quantidade": 24
         },
         {
             "titulo": "P\u00e3o Queimado",
             "raridade": "COMUM",
-            "quantidade": 19
+            "quantidade": 22
         },
         {
             "titulo": "Frango Empedrado",
             "raridade": "COMUM",
-            "quantidade": 29
+            "quantidade": 32
         },
         {
             "titulo": "Torta Crua",
             "raridade": "RARO",
-            "quantidade": 9
+            "quantidade": 10
         },
         {
             "titulo": "P\u00e3o Queimado Divino",
@@ -212,17 +212,17 @@
         {
             "titulo": "P\u00e3o Queimado",
             "raridade": "COMUM",
-            "quantidade": 26
+            "quantidade": 29
         },
         {
             "titulo": "Pastel Queimado",
             "raridade": "COMUM",
-            "quantidade": 24
+            "quantidade": 26
         },
         {
             "titulo": "Frango Empedrado",
             "raridade": "COMUM",
-            "quantidade": 21
+            "quantidade": 26
         },
         {
             "titulo": "P\u00e3o Queimado Divino",
@@ -233,6 +233,11 @@
             "titulo": "Torta Crua",
             "raridade": "RARO",
             "quantidade": 3
+        },
+        {
+            "titulo": "Mousse de Maracuj\u00e1 com Chocolate",
+            "raridade": "HOLO",
+            "quantidade": 1
         }
     ],
     "347431009895055360": [
