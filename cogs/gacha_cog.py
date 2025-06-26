@@ -11,6 +11,8 @@ class GachaCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Dentro da classe GachaCog, em cogs/gacha_cog.py
+
     @app_commands.command(name="cozinhar", description="Prepara um prato aleatório para adicionar ao seu inventário.")
     async def cozinhar(self, interaction: discord.Interaction):
         await interaction.response.send_message("🍳 Preparando a cozinha, vamos ver o que sai...")
@@ -22,41 +24,45 @@ class GachaCog(commands.Cog):
         
         user_id = str(interaction.user.id)
         
-        # Procura pelo inventário do usuário no banco de dados
         user_data = await self.bot.inventories.find_one({"user_id": user_id})
         
         is_new_card = False
         
-        # Verifica se o usuário já tem um inventário e se a carta sorteada está nele
         if user_data and any(item['titulo'] == carta_sorteada['titulo'] for item in user_data.get('inventory', [])):
-            # Se a carta já existe, incrementa a quantidade diretamente no banco de dados
             await self.bot.inventories.update_one(
                 {"user_id": user_id, "inventory.titulo": carta_sorteada['titulo']},
                 {"$inc": {"inventory.$.quantidade": 1}}
             )
         else:
-            # Se a carta é nova para o usuário (ou se o usuário é novo)
             is_new_card = True
             nova_carta = {"titulo": carta_sorteada['titulo'], "raridade": carta_sorteada['raridade'], "quantidade": 1}
-            # Adiciona a nova carta ao array 'inventory'. O 'upsert=True' cria o documento do usuário se ele não existir.
             await self.bot.inventories.update_one(
                 {"user_id": user_id},
                 {"$push": {"inventory": nova_carta}, "$setOnInsert": {"user_name": interaction.user.name}},
                 upsert=True
             )
 
-        # Montagem da Embed (lógica visual continua a mesma)
         raridade_info = RARIDADES[carta_sorteada['raridade']]
         embed = discord.Embed(title=carta_sorteada['titulo'], description=f"**Nota da Chef Bea:**\n*{carta_sorteada['descricao']}*", color=raridade_info['cor'])
         embed.set_author(name=raridade_info['estrelas'])
         embed.set_image(url=carta_sorteada['foto'])
-        embed.set_footer(text=f"Prato preparado para: {interaction.user.name}" + CARACTERE_INVISIVEL * 25)
+        embed.set_footer(text=f"Prato preparado para: {interaction.user.name}" + CARACTERE_INVISIVEL * 12)
         
         await interaction.edit_original_response(content="", embed=embed)
 
         if is_new_card:
-            await interaction.followup.send("🎉 **NOVA RECEITA DESCOBERTA!** 🎉", ephemeral=True)
+            await interaction.followup.send("🎉 **NOVA RECEITA DESCOBERTA!** 🎉", )
 
+        # --- NOVO: Alerta especial para cartas amaldiçoadas ---
+        if carta_sorteada['raridade'] == 'AMALDIÇOADO':
+            # Envia uma nova mensagem PÚBLICA no canal marcando @everyone
+            alerta = (
+                "🚨 CUIDADO, @everyone! 🚨\n\n"
+                f"O desastre aconteceu! **{interaction.user.mention}** acaba de preparar uma receita **AMALDIÇOADA**! 💀"
+            )
+            await interaction.channel.send(alerta)
+
+            
     @app_commands.command(name="inventario", description="Mostra todas as suas cartas de receitas coletadas.")
     async def inventario(self, interaction: discord.Interaction):
         user_id = str(interaction.user.id)
@@ -82,7 +88,7 @@ class GachaCog(commands.Cog):
             raridade_estrelas = RARIDADES[item['raridade']]['estrelas']
             embed.add_field(name=f"{item['titulo']} (x{item['quantidade']})", value=raridade_estrelas, inline=False)
             
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(GachaCog(bot))
