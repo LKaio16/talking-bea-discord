@@ -126,7 +126,8 @@ class GachaCog(commands.Cog):
         user_inventory = user_data.get('inventory', [])
         user_coins = user_data.get('coins', 0)
         
-        is_private = user_data.get("profile", {}).get("inventory_is_private", True)
+        is_private = user_data.get("profile", {}).get("inventory_is_private", False)
+        print(is_private)
         
         await interaction.response.defer(ephemeral=is_private) 
         
