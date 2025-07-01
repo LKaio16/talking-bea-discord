@@ -87,7 +87,7 @@ class UtilityCog(commands.Cog):
 
     @app_commands.command(name="paz", description="Acala boca alison")
     async def paz(self, interaction: discord.Interaction):
-        # ID do usuário que será "pacificado"
+        # ID do mlk do carai
         TARGET_USER_ID = 537471265284423680
 
         # Duração do "momento de paz" (5 minutos)

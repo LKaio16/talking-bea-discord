@@ -5293,3 +5293,103 @@ Traceback (most recent call last):
     await self.execute_trade(interaction)
           ^^^^^^^^^^^^^^^^^^
 AttributeError: 'TradeView' object has no attribute 'execute_trade'
+2025-06-30 12:29:57,609:ERROR:discord.ui.view: Ignoring exception in view <ItemListView timeout=180 children=3> for item <Select placeholder='Selecione um item para comprar...' min_values=1 max_values=1 disabled=False>
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ui\view.py", line 438, in _scheduled_task
+    await item.callback(interaction)
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\shop_cog.py", line 361, in purchase_callback
+    await interaction.message.edit(view=self)
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\message.py", line 2991, in edit
+    data = await self._state.http.edit_message(self.channel.id, self.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\http.py", line 763, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10008): Unknown Message
+2025-06-30 14:27:48,476:ERROR:discord.ui.view: Ignoring exception in view <ItemListView timeout=180 children=3> for item <Select placeholder='Selecione um item para comprar...' min_values=1 max_values=1 disabled=False>
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ui\view.py", line 438, in _scheduled_task
+    await item.callback(interaction)
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\shop_cog.py", line 361, in purchase_callback
+    await interaction.message.edit(view=self)
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\message.py", line 2991, in edit
+    data = await self._state.http.edit_message(self.channel.id, self.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\http.py", line 763, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10008): Unknown Message
+2025-06-30 18:45:42,770:ERROR:discord.voice_state: Disconnected from voice... Reconnecting in 0.45s.
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\aiohttp\client_ws.py", line 336, in receive
+    msg = await self._reader.read()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_websocket/reader_c.py", line 118, in read
+  File "aiohttp/_websocket/reader_c.py", line 115, in aiohttp._websocket.reader_c.WebSocketDataQueue.read
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\voice_state.py", line 598, in _poll_voice_ws
+    await self.ws.poll_event()
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\gateway.py", line 1031, in poll_event
+    msg = await asyncio.wait_for(self.ws.receive(), timeout=30.0)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 506, in wait_for
+    async with timeouts.timeout(timeout):
+               ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\asyncio\timeouts.py", line 116, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2025-06-30 19:05:08,012:ERROR:discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\music_cog.py", line 35, in on_ready
+    await self.bot.change_presence(activity=self.default_activity)
+                                            ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MusicCog' object has no attribute 'default_activity'
+2025-06-30 19:05:42,143:ERROR:discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\music_cog.py", line 35, in on_ready
+    await self.bot.change_presence(activity=self.default_activity)
+                                            ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MusicCog' object has no attribute 'default_activity'
+2025-06-30 19:06:37,414:ERROR:discord.player: Calling the after function failed.
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\player.py", line 788, in _call_after
+    self.after(error)
+    ~~~~~~~~~~^^^^^^^
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\music_cog.py", line 54, in <lambda>
+    voice_client.play(source, after=lambda e: self.play_next(interaction))
+                                              ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\music_cog.py", line 43, in play_next
+    asyncio.run_coroutine_threadsafe(self.bot.change_presence(activity=self.default_activity), self.bot.loop)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MusicCog' object has no attribute 'default_activity'
+2025-06-30 19:06:37,638:ERROR:discord: Erro no comando 'stop':
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ytkka\Desktop\BOPT BEA\cogs\music_cog.py", line 193, in stop
+    await self.bot.change_presence(activity=self.default_activity) # Limpa a atividade
+                                            ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MusicCog' object has no attribute 'default_activity'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ytkka\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'stop' raised an exception: AttributeError: 'MusicCog' object has no attribute 'default_activity'
+

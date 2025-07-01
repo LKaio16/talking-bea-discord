@@ -114,7 +114,7 @@ class GachaCog(commands.Cog):
         embed = discord.Embed(title=carta_sorteada['titulo'], description=f"**Nota da Chef Bea:**\n*{carta_sorteada['descricao']}*", color=raridade_info['cor'])
         embed.set_author(name=raridade_info['estrelas'])
         embed.set_image(url=carta_sorteada['foto'])
-        embed.set_footer(text=f"Prato preparado para: {interaction.user.name}" + CARACTERE_INVISIVEL * 9)
+        embed.set_footer(text=f"Prato preparado para: {interaction.user.name}" + CARACTERE_INVISIVEL * 7)
         await interaction.edit_original_response(content="", embed=embed)
         if is_new_card: await interaction.followup.send("🎉 **NOVA RECEITA DESCOBERTA!** 🎉", ephemeral=True)
         if carta_sorteada['raridade'] == 'AMALDIÇOADO': await interaction.channel.send(f"🚨 CUIDADO, @everyone! 🚨\n\nO desastre aconteceu! **{interaction.user.mention}** acaba de preparar uma receita **AMALDIÇOADA**! 💀")
